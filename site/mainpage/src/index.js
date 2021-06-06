@@ -2,32 +2,25 @@ import React, { useState } from "react";
 import { render } from "react-dom";
 import { Layout, Menu, Divider, Space } from "antd";
 import {
-  TeamOutlined,
-  PhoneOutlined,
   FormOutlined,
   EyeOutlined,
-  MailOutlined,
-  UserOutlined,
-  ConsoleSqlOutlined,
-  PlusCircleOutlined,
-  CloseOutlined,
   PlaySquareOutlined,
   EditOutlined,
-  UserAddOutlined,
-  UserDeleteOutlined,
 } from "@ant-design/icons";
 
 import "antd/dist/antd.css";
 import "./index.css";
 
+import UploadExample from "./uploadexample.js";
+import DropdownTable from "./ddtableexample.js";
+
 const { Header, Content, Footer, Sider } = Layout;
 
-const props = { ID: 0, element: 5 };
-
 const App = (props) => {
-  const serveradress = "";//"//127.0.0.1:8000"; // change this for production
 
-  const API = serveradress + "/api/";
+  //const serveradress = "//127.0.0.1:8000"; // use this for development
+  const serveradress = ""; // use this for building the project
+  const API = serveradress + "/api";
 
   const [selectedMenuItem, setSelectedMenuItem] = useState("Menu1");
   const componentsSwitch = (key) => {
@@ -38,7 +31,7 @@ const App = (props) => {
             className="site-foreground"
             style={{ width: 800, margin: "20px auto" }}
           >
-
+            <UploadExample api={API} />
           </div>
         );
       case "Menu2":
@@ -47,7 +40,7 @@ const App = (props) => {
             className="site-foreground"
             style={{ width: 800, margin: "20px auto" }}
           >
-
+            <DropdownTable api={API} />
           </div>
         );
       default:
@@ -79,13 +72,13 @@ const App = (props) => {
             <FormOutlined /> Divider
           </Divider>
           <Menu.Item key="Menu1" icon={<EditOutlined />}>
-            Menu 1
+            Upload Example
           </Menu.Item>
           <Divider orientation="left" style={{ color: "white" }}>
             <EyeOutlined /> Divider
           </Divider>
           <Menu.Item key="Menu2" icon={<PlaySquareOutlined />}>
-            Menu 2
+            Table Example
           </Menu.Item>
         </Menu>
       </Sider>
